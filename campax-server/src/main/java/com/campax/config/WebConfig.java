@@ -20,7 +20,7 @@ public class WebConfig {
 						  .allowedOrigins(
 							  "http://localhost:5173",
 							  "http://localhost:8080/swagger-ui/**",
-							  "https://campax.vercel.app",
+							  "https://campaxx.vercel.app",
 							  "https://skooly-1buzk9nt9-diwakar-singhs-projects.vercel.app")
 						  .allowedMethods("GET", "POST", "PUT", "DELETE");
 			}

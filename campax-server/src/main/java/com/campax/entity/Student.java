@@ -1,5 +1,6 @@
 package com.campax.entity;
 
+import com.campax.entity.common.Address;
 import com.campax.enums.StudentStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

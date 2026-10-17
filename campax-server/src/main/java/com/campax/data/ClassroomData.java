@@ -9,7 +9,9 @@ import com.campax.repository.SchoolRepository;
 import com.campax.service.ClassroomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import java.util.List;
 
@@ -21,8 +23,8 @@ public class ClassroomData {
 	private final SchoolRepository schoolRepository;
 	private final ClassroomRepository classroomRepository;
 	
-	//	@Bean
-//	@Order(3)
+		@Bean
+	@Order(3)
 	public CommandLineRunner seedClassrooms() {
 		
 		return args -> {

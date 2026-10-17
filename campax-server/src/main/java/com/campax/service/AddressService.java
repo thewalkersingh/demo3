@@ -1,6 +1,6 @@
 package com.campax.service;
 
-import com.campax.entity.Address;
+import com.campax.entity.common.Address;
 
 import java.util.List;
 

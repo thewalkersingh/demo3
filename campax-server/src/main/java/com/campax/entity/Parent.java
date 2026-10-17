@@ -1,5 +1,6 @@
 package com.campax.entity;
 
+import com.campax.entity.common.Address;
 import com.campax.enums.ParentStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

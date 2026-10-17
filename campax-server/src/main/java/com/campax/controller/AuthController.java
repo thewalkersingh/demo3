@@ -33,9 +33,9 @@ public class AuthController {
 	// POST /auth/register
 	@PostMapping("/register")
 	public ApiResponse<AuthMessageResponse> register(@Valid @RequestBody RegisterRequest request) {
-		
 		AuthMessageResponse response = authService.register(request);
 		log.info("New registration submitted for user: {} {}", request.getFirstName(), request.getLastName());
+		
 		return ApiResponse.<AuthMessageResponse>builder()
 								.success(true)
 								.message("Registration submitted successfully")

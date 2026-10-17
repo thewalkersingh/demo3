@@ -7,7 +7,9 @@ import com.campax.repository.ClassroomRepository;
 import com.campax.repository.SectionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import java.util.List;
 
@@ -18,8 +20,8 @@ public class SectionData {
 	private final SectionRepository sectionRepository;
 	private final ClassroomRepository classroomRepository;
 	
-	//	@Bean
-//	@Order(4)
+		@Bean
+	@Order(4)
 	public CommandLineRunner seedSections() {
 		return args -> {
 			Faker faker = new Faker();

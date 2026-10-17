@@ -9,7 +9,9 @@ import com.campax.repository.SubjectRepository;
 import com.campax.service.SubjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +27,8 @@ public class SubjectData {
 	private final SubjectRepository subjectRepository;
 	private final SectionRepository sectionRepository;
 	
-	//	@Bean
-//	@Order(5)
+		@Bean
+	@Order(5)
 	public CommandLineRunner seedSubjects() {
 		
 		return args -> {
@@ -67,8 +69,8 @@ public class SubjectData {
 		};
 	}
 	
-	//	@Bean
-//	@Order(5)
+		@Bean
+	@Order(5)
 	public CommandLineRunner seedSectionSubjectsData() {
 		
 		return args -> {

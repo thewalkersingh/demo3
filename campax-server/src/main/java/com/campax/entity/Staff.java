@@ -1,5 +1,6 @@
 package com.campax.entity;
 
+import com.campax.entity.common.Address;
 import com.campax.enums.Department;
 import com.campax.enums.StaffRole;
 import com.campax.enums.StaffStatus;

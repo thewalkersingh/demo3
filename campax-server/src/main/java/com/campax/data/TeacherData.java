@@ -17,7 +17,9 @@ import com.campax.repository.TeacherRepository;
 import com.campax.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -32,8 +34,8 @@ public class TeacherData {
 	private final SectionRepository sectionRepository;
 	private final TeacherRepository teacherRepository;
 	
-	//	@Bean
-//	@Order(7)
+	@Bean
+	@Order(7)
 	public CommandLineRunner seedTeachers() {
 		
 		return args -> {
@@ -61,42 +63,42 @@ public class TeacherData {
 					
 					// Assign 2-3 subjects round-robin per teacher
 					List<Long> subjectIds = allSubjects.stream()
-					                                   .skip((teacherIndex - 1) % allSubjects.size())
-					                                   .limit(3)
-					                                   .map(Subject::getId)
-					                                   .toList();
+																  .skip((teacherIndex - 1) % allSubjects.size())
+																  .limit(3)
+																  .map(Subject::getId)
+																  .toList();
 					
 					TeacherRequest request =
 						TeacherRequest.builder()
-						              .qualification(faker.educator().campus())
-						              .experience(faker.number().numberBetween(1, 20))
-						              .photoUrl(faker.internet().avatar())
-						              .dob(LocalDate.of(
-							              faker.number().numberBetween(1970, 1995),
-							              faker.number().numberBetween(1, 12),
-							              faker.number().numberBetween(1, 28)))
-						              .joiningDate(LocalDate.now())
-						              .address(AddressRequest.builder()
-						                                     .houseNumber(
-							                                     faker.address().buildingNumber())
-						                                     .streetName(faker.address().streetName())
-						                                     .zipCode(faker.address().zipCode())
-						                                     .city(faker.address().city())
-						                                     .state(faker.address().state())
-						                                     .build())
-						              .teacherStatus(faker.options().option(TeacherStatus.ACTIVE))
-						              // never seed DELETED/INACTIVE
-						              .subjectIds(subjectIds)
-						              .identity(UserIdentityRequest.builder()
-						                                           .firstName(faker.name().firstName())
-						                                           .lastName(faker.name().lastName())
-						                                           .phone(phone)
-						                                           .email(email)
-						                                           .gender(faker.options()
-						                                                        .option(Gender.MALE,
-							                                                        Gender.FEMALE))
-						                                           .build())
-						              .build();
+										  .qualification(faker.educator().campus())
+										  .experience(faker.number().numberBetween(1, 20))
+										  .photoUrl(faker.internet().avatar())
+										  .dob(LocalDate.of(
+											  faker.number().numberBetween(1970, 1995),
+											  faker.number().numberBetween(1, 12),
+											  faker.number().numberBetween(1, 28)))
+										  .joiningDate(LocalDate.now())
+										  .address(AddressRequest.builder()
+																		 .houseNumber(
+																			 faker.address().buildingNumber())
+																		 .streetName(faker.address().streetName())
+																		 .zipCode(faker.address().zipCode())
+																		 .city(faker.address().city())
+																		 .state(faker.address().state())
+																		 .build())
+										  .teacherStatus(faker.options().option(TeacherStatus.ACTIVE))
+										  // never seed DELETED/INACTIVE
+										  .subjectIds(subjectIds)
+										  .identity(UserIdentityRequest.builder()
+																				 .firstName(faker.name().firstName())
+																				 .lastName(faker.name().lastName())
+																				 .phone(phone)
+																				 .email(email)
+																				 .gender(faker.options()
+																								  .option(Gender.MALE,
+																									  Gender.FEMALE))
+																				 .build())
+										  .build();
 					
 					teacherService.createTeacher(school.getId(), request);
 				}
@@ -104,8 +106,8 @@ public class TeacherData {
 		};
 	}
 	
-	//	@Bean
-//	@Order(8)
+	@Bean
+	@Order(8)
 	public CommandLineRunner seedSectionTeachers() {
 		
 		return args -> {
@@ -114,7 +116,7 @@ public class TeacherData {
 			for (School school : schools) {
 				List<Teacher> teachers = teacherRepository.findBySchoolId(school.getId());
 				List<Section> unassigned = sectionRepository
-					                           .findUnassignedSectionsBySchoolId(school.getId());
+														.findUnassignedSectionsBySchoolId(school.getId());
 				
 				// Assign teachers to unassigned sections round-robin
 				for (int i = 0; i < unassigned.size(); i++) {

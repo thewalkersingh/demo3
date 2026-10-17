@@ -1,4 +1,4 @@
-package com.campax.entity;
+package com.campax.entity.common;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
